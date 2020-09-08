@@ -22,3 +22,89 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# テーブル設計
+
+## users テーブル
+
+| Column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| nickname        | string  | null: false |
+| email           | string  | null: false |
+| password        | string  | null: false |
+| family_name     | string  | null: false |
+| first_name      | string  | null: false |
+| kana_family_name| string  | null: false |
+| kana_first_name | string  | null: false |
+| birthday        | integer | null: false |
+
+### Association
+
+- has_many :items
+- has_many :comments
+- has_one :buyers
+
+## items テーブル
+
+| Column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| name            | string  | null: false |
+| image           | text    | null: false |
+| explanation     | string  | null: false |
+| category        | string  | null: false |
+| status          | string  | null: false |
+| price           | integer | null: false |
+| delivery_fee    | integer | null: false |
+| shipping_origin | string  | null: false |
+| delivery_date   | string  | null: false |
+
+### Association
+
+- belongs_to :user
+- has_many :comments
+- has_one :buyer
+
+## comments テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| content | string     | null: false                    |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+## buyers テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| card_number   | integer    | null: false                    |
+| effectiveness | integer    | null: false                    |
+| security_code | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+
+## shipping_address テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| postal_code   | integer    | null: false                    |
+| prefectures   | string     | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building_name | string     |                                |
+| phone         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :buyer
