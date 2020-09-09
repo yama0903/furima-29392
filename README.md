@@ -49,9 +49,8 @@ Things you may want to cover:
 | Column          | Type    | Options     |
 | --------------- | ------- | ----------- |
 | name            | string  | null: false |
-| image           | text    | null: false |
-| explanation     | string  | null: false |
-| category        | string  | null: false |
+| explanation     | text    | null: false |
+| category        | integer | null: false |
 | status          | integer | null: false |
 | price           | integer | null: false |
 | delivery_fee    | integer | null: false |
@@ -88,9 +87,10 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
+- has_one :shipping_address
 
 
-## shipping_address テーブル
+## shipping_addresses テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
