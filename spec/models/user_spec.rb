@@ -14,7 +14,6 @@ RSpec.describe User, type: :model do
 
     context '新規登録できない時' do
       it 'nicknameが空だと登録できない' do
-        @user = FactoryBot.build(:user)
         @user.nickname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
@@ -23,6 +22,11 @@ RSpec.describe User, type: :model do
         @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it 'emailに＠が含まれない場合に登録できない' do
+        @user.email = '1111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it '重複したemailがあると登録できない' do
         @user.save
@@ -52,7 +56,14 @@ RSpec.describe User, type: :model do
         @user.password = 'AAAAAA'
         @user.password_confirmation = 'AAAAAA'
         @user.valid?
-        expect(@user.errors.full_messages).to include
+        binding.pry
+        expect(@user.errors.full_messages).to include()
+      end
+      it 'passwordに数字のみを入力した場合に登録できない' do
+        @user.password = '111111'
+        @user.password_confirmation = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it 'family_nameが空だと登録できない' do
         @user.family_name = ''
@@ -60,6 +71,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Family name can't be blank")
       end
       it 'family_nameは全角（漢字・ひらがな・カタカナ）でなければ登録できない' do
+        @user.family_name = 'aaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name is invalid")
       end
       it 'first_nameが空だと登録できない' do
         @user.first_name = ''
@@ -67,6 +81,10 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it 'first_nameは全角（カタカナ）でなければ登録できない' do
+        @user.first_name = 'bbbb'
+        @user.valid?
+        binding.pry
+        expect(@user.errors.full_messages).to include("First name is invalid")
       end
       it 'birthdayが空だと登録できない' do
         @user.birthday = ''
