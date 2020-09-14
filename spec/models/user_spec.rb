@@ -56,13 +56,13 @@ RSpec.describe User, type: :model do
         @user.password = 'AAAAAA'
         @user.password_confirmation = 'AAAAAA'
         @user.valid?
-        binding.pry
-        expect(@user.errors.full_messages).to include()
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it 'passwordに数字のみを入力した場合に登録できない' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
+        binding.pry
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it 'family_nameが空だと登録できない' do
@@ -83,7 +83,6 @@ RSpec.describe User, type: :model do
       it 'first_nameは全角（カタカナ）でなければ登録できない' do
         @user.first_name = 'bbbb'
         @user.valid?
-        binding.pry
         expect(@user.errors.full_messages).to include("First name is invalid")
       end
       it 'birthdayが空だと登録できない' do
