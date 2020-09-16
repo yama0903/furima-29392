@@ -9,7 +9,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new
+    @item = Item.new(item_params)
+    binding.pry
   end
 
   private
@@ -19,5 +20,9 @@ class ItemsController < ApplicationController
       redirect_to new_user_session_path
     end
   end
-  
+
+  def item_params
+    params.require(:item).permit(:name, :explanation, :category_id, :status_id, :delivery_fee_id, :shipping_origin_id, :delivery_date_id, :price, :image).merge(user_id: current_user.id)
+  end
+
 end
