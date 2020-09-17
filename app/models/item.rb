@@ -1,13 +1,13 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  # validates :name, presence: true
-  # validates :explanation, presence: true
-  # validates :category, presence: true, numericality: { other_than: 1 }
-  # validates :status, presence: true, numericality: { other_than: 1 }
-  # validates :price, presence: true, format: { with: /\A[0-9]{¥300〜9,999,999}+\z/ }
-  # validates :delivery_fee, presence: true, numericality: { other_than: 1 }
-  # validates :shipping_origin, presence: true, numericality: { other_than: 1 }
-  # validates :delivery_date, presence: true, numericality: { other_than: 1 }
+  validates :name, presence: true
+  validates :explanation, presence: true
+  validates :category_id, presence: true, numericality: { other_than: 1 }
+  validates :status_id, presence: true, numericality: { other_than: 1 }
+  validates :price, presence: true, inclusion: {in: 300..9999999}, format: { with: /\A[0-9]+\z/ }
+  validates :delivery_fee_id, presence: true, numericality: { other_than: 1 }
+  validates :shipping_origin_id, presence: true, numericality: { other_than: 1 }
+  validates :delivery_date_id, presence: true, numericality: { other_than: 1 }
 
   belongs_to :user
   has_many :comments
