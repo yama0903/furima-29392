@@ -8,11 +8,7 @@ class Item < ApplicationRecord
   validates :delivery_fee_id, presence: true, numericality: { other_than: 1 }
   validates :shipping_origin_id, presence: true, numericality: { other_than: 1 }
   validates :delivery_date_id, presence: true, numericality: { other_than: 1 }
-  validate :image_attach
-
-  def image_attach
-    errors.add(:image, "can't be blank") unless image.attached?
-  end
+  validates :image, presence: true
 
   belongs_to :user
   has_many :comments
