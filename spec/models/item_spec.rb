@@ -13,69 +13,69 @@ RSpec.describe Item, type: :model do
       end
     end
 
-    context "itemの保存ができない時" do
-      it "imageがないと保存できない" do
+    context 'itemの保存ができない時' do
+      it 'imageがないと保存できない' do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
-      it "nameが空だと保存できない" do
-        @item.name = ""
+      it 'nameが空だと保存できない' do
+        @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
-      it "explanationが空だと保存できない" do
-        @item.explanation = ""
+      it 'explanationが空だと保存できない' do
+        @item.explanation = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
-      it "category_idが空だと保存できない" do
-        @item.category_id = ""
+      it 'category_idが空だと保存できない' do
+        @item.category_id = ''
         @item.valid?
 
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it "status_idが空だと保存できない" do
-        @item.status_id = ""
+      it 'status_idが空だと保存できない' do
+        @item.status_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
-      it "delivery_fee_idが空だと保存できない" do
-        @item.delivery_fee_id = ""
+      it 'delivery_fee_idが空だと保存できない' do
+        @item.delivery_fee_id = ''
         @item.valid?
 
         expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
-      it "shipping_origin_idが空だと保存できない" do
-        @item.shipping_origin_id = ""
+      it 'shipping_origin_idが空だと保存できない' do
+        @item.shipping_origin_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping origin can't be blank")
       end
-      it "delivery_date_idが空だと保存できない" do
-        @item.delivery_date_id = ""
+      it 'delivery_date_idが空だと保存できない' do
+        @item.delivery_date_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery date can't be blank")
       end
-      it "priceが空だと保存できない" do
-        @item.price = ""
+      it 'priceが空だと保存できない' do
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it "priceが300円未満の時保存できない" do
-        @item.price = "200"
+      it 'priceが300円未満の時保存できない' do
+        @item.price = '200'
         @item.valid?
 
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
-      it "priceが9,999,999円以上の時保存できない" do
-        @item.price = "10000000"
+      it 'priceが9,999,999円以上の時保存できない' do
+        @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
-      it "priceが全角だと保存できない" do
-        @item.price = "１０００"
+      it 'priceが全角だと保存できない' do
+        @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
     end
   end

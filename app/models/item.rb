@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   validate :image_attach
 
   def image_attach
-      errors.add(:image, "can't be blank") if !image.attached?
+    errors.add(:image, "can't be blank") unless image.attached?
   end
 
   belongs_to :user
