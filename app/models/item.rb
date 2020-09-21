@@ -4,10 +4,15 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
   validates :category_id, presence: true, numericality: { other_than: 1 }
   validates :status_id, presence: true, numericality: { other_than: 1 }
-  validates :price, presence: true, inclusion: {in: 300..9999999}, format: { with: /\A[0-9]+\z/ }
+  validates :price, presence: true, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   validates :delivery_fee_id, presence: true, numericality: { other_than: 1 }
   validates :shipping_origin_id, presence: true, numericality: { other_than: 1 }
   validates :delivery_date_id, presence: true, numericality: { other_than: 1 }
+  validate :image_attach
+
+  def image_attach
+      errors.add(:image, "can't be blank") if !image.attached?
+  end
 
   belongs_to :user
   has_many :comments
@@ -20,5 +25,3 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_date
   belongs_to_active_hash :shipping_origin
 end
-
-
