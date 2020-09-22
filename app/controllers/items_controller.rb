@@ -18,10 +18,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    @items = Item.all.order(id: 'DESC')
-  end
-
   private
 
   def move_to_sign_in
