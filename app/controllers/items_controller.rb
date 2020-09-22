@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_sign_in, except: [:index, :show]
 
   def index
+    @items = Item.all.order(id: "DESC")
   end
 
   def new
@@ -18,6 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @items = Item.all.order(id: "DESC")
   end
 
   private
