@@ -37,7 +37,7 @@ RSpec.describe Item, type: :model do
       it 'category_idが１の場合登録できない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it 'status_idが空だと保存できない' do
         @item.status_id = ''
@@ -47,7 +47,7 @@ RSpec.describe Item, type: :model do
       it 'status_idが１の場合登録できない' do
         @item.status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
       it 'delivery_fee_idが空だと保存できない' do
         @item.delivery_fee_id = ''
@@ -57,7 +57,7 @@ RSpec.describe Item, type: :model do
       it 'delivery_fee_idが１の場合登録できない' do
         @item.delivery_fee_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery fee must be other than 1')
       end
       it 'shipping_origin_idが空だと保存できない' do
         @item.shipping_origin_id = ''
@@ -67,7 +67,7 @@ RSpec.describe Item, type: :model do
       it 'shipping_origin_idが１の場合登録できない' do
         @item.shipping_origin_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping origin must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping origin must be other than 1')
       end
       it 'delivery_date_idが空だと保存できない' do
         @item.delivery_date_id = ''
@@ -77,7 +77,7 @@ RSpec.describe Item, type: :model do
       it 'delivery_date_idが１の場合登録できない' do
         @item.delivery_date_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery date must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery date must be other than 1')
       end
       it 'priceが空だと保存できない' do
         @item.price = ''
