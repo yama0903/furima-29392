@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_many :comments
-  has_one :buyer
+  has_one :order
   has_one_attached :image
 
   belongs_to_active_hash :category
