@@ -1,16 +1,15 @@
 class OrdersController < ApplicationController
   before_action :move_to_sign_in
+  before_action :set_item, only: [:index, :create]
 
   def index
     @order = OrderShippingAddress.new
-    @item = Item.find(params[:item_id])
     if user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
     end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = OrderShippingAddress.new(order_params)
     if @order.valid?
       pay_item
@@ -28,6 +27,10 @@ class OrdersController < ApplicationController
 
   def move_to_sign_in
     redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item
