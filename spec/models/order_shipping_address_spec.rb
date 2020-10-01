@@ -18,7 +18,7 @@ RSpec.describe OrderShippingAddress, type: :model do
     it 'postal_codeにハイフンがなければ保存できない' do
       @order_shipping_address.postal_code = "1111111"
       @order_shipping_address.valid?
-      expect(@order_shipping_address.errors.full_messages).to include("Postal code is invalid")
+      expect(@order_shipping_address.errors.full_messages).to include("Postal code include hypone")
     end
     it 'prefecturesを選択していないと保存ができない' do
       @order_shipping_address.prefectures = ""
@@ -26,7 +26,7 @@ RSpec.describe OrderShippingAddress, type: :model do
       expect(@order_shipping_address.errors.full_messages).to include("Prefectures can't be blank")
     end
     it 'prefecturesが1だと保存ができない' do
-      @order_shipping_address.prefectures = "1"
+      @order_shipping_address.prefectures = 1
       @order_shipping_address.valid?
       expect(@order_shipping_address.errors.full_messages).to include("Prefectures can't be blank")
     end
@@ -52,7 +52,7 @@ RSpec.describe OrderShippingAddress, type: :model do
     it 'phoneにハイフンがあると保存ができない' do
       @order_shipping_address.phone = "090-1111-"
       @order_shipping_address.valid?
-      expect(@order_shipping_address.errors.full_messages).to include("Phone is invalid")
+      expect(@order_shipping_address.errors.full_messages).to include("Phone numerical value only")
     end
     it 'phoneが12桁以上だと保存ができない' do
       @order_shipping_address.phone = "090123456789"
