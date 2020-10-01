@@ -5,13 +5,12 @@ class OrderShippingAddress
 
   with_options presence: true do
     validates :postal_code, format: { with: /\d{3}[-]\d{4}\z/, message: "include hypone" }
+    validates :prefectures, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address
     validates :phone, format: { with: /\d[0-9]\z/, message: "numerical value only" }, length: { maximum: 11 }
     validates :token
   end
-
-  validates :prefectures, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
