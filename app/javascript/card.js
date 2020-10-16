@@ -1,4 +1,3 @@
-if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
   const pay = () => {
     Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
     const form = document.getElementById("charge-form");
@@ -35,4 +34,3 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
   };
 
   window.addEventListener("load", pay);
-}
